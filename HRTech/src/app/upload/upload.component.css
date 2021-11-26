@@ -1,0 +1,53 @@
+.upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+}
+.custom-file-inputs::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.custom-file-inputs::before {
+    content: "Загрузить";
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border-radius: 3px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+}
+.custom-file-inputs:hover::before {
+    border-color: black;
+}
+.custom-file-inputs:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+input {
+    flex-direction: row;
+    align-items: center;
+    padding: 12.5px 21px;
+
+    height: 44px;
+    width: 100%;
+    left: 0px;
+    top: 26px;
+
+    /* White */
+
+    background: #ffffff;
+    /* Dark / 10 */
+
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 13px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}

@@ -1,0 +1,277 @@
+<section class="intro intro__marg">
+    <div class="headContainer container border" style="margin-top: 12px;">
+        <div class="image"></div>
+        <div class="row" style="margin-top: 12px;margin-bottom: 12px;">
+            <ng-container *ngIf="(isAuth$ | async)">
+                <ng-container *ngIf="(currentUser$ | async) as currentUser">
+                    <div class="col-lg-1">
+                        <label for="upload">
+                            <ng-container *ngIf="currentUser.photo.content != ''; else photoCurrentUser">
+                                <input type="file" #photo (change)="uploadPhotoUser(photo.files)" id="upload" hidden />
+                                <img src="data:image/png;base64,{{currentUser.photo.content}}" sizes="2" alt=""
+                                    class="photo ml-5">
+                            </ng-container>
+
+                        </label>
+
+                    </div>
+                    <div class="col-lg-7">
+
+                        <h1 class="h36">{{ currentUser.lastName }} {{ currentUser.firstName }}</h1>
+                        <div>
+                            <ng-container *ngIf="grade$ | async as grades; else gradeNull;">
+                                {{grades.title}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 center" style="justify-content: flex-end;">
+                        <a href="" class="button1 mr-2">
+                            <img src="../../../assets/image/iconSetting.png" alt=""> Настройки профиля</a>
+                        <a [routerLink]="['/CompanyLk', currentUser.companyId]" class="button1 mr-2"
+                            *ngIf="currentUser.isDirector">
+                            <img src="../../../assets/image/Star1.png" alt="">ЛК компании</a>
+                        <a routerLink="/admin-panel" class="button1 mr-2"
+                            *ngIf="isAdmin">
+                            <img src="../../../assets/image/Star1.png" alt="">ЛК админа</a>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+    <div class="contentContainer container mt20">
+        <div class="col-lg-5 border">
+            <div class="head">
+                <h2 class="h24">Мои оценки</h2>
+                <h2 style="font-size: 14px;">Слудующая через ...</h2>
+            </div>
+
+            <ng-container *ngIf="evaluationsForUser$ | async as evaluationsForUsers; else loadingBlock">
+                <div class="scroll-container">
+                    <div *ngFor="let evaluationsForUser of evaluationsForUsers.evaluation">
+                        <div class="scroll-page">
+                            <a [routerLink]="['/evaluation', evaluationsForUser.id]" style="width: 100%; color: #000;">
+                                <div class="evaluation">
+                                    <div class="head" style="margin-top: 0; width: 100%;">
+                                        <div class="head" style="margin-top: 10px; margin-left: 18px;">
+                                            <div class="h24b">{{ evaluationsForUser.currentGrade.title }}</div>
+                                            <img src="../../../assets/image/Arrow.png" alt="" class="ml-2 mr-2">
+                                            <div class="h24b">{{ evaluationsForUser.nextGrade.title }}</div>
+                                            <div class="date ml-2" style="color: #A3A6A7;">
+                                                {{evaluationsForUser.dateOfEvaluation | date:'yyyy-MM-dd'}}</div>
+                                        </div>
+                                        <ng-container *ngIf="evaluationsForUser.evaluationState == 0">
+                                            <div class="stateEvaluationNew" style="margin-top: 10px;">
+                                                <div>В ПЛАНАХ</div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="evaluationsForUser.evaluationState == 10">
+                                            <div class="stateEvaluationInProgress" style="margin-top: 10px;">
+                                                <div>В ПРОЦЕССЕ</div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="evaluationsForUser.evaluationState == 20">
+                                            <div class="stateEvaluationCanceled" style="margin-top: 10px;">
+                                                <div>ОТЛОЖЕНА</div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="evaluationsForUser.evaluationState == 30">
+                                            <div class="stateEvaluationPassed" style="margin-top: 10px;">
+                                                <div>ПРОЙДЕНА</div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
+                                    <div class="experts" style="margin-left: 18px; margin-top: 18px;">
+                                        <div class="skill">
+                                            <div class="foto mr-2">
+                                                <ng-container
+                                                    *ngIf="evaluationsForUser.applicationUserExpertSoftSkills.photo != null; else photoUser">
+                                                    <img src="data:image/png;base64,{{evaluationsForUser.applicationUserExpertSoftSkills.photo.content}}"
+                                                        alt="" class="photoUser">
+                                                </ng-container>
+                                            </div>
+                                            <div class="exp">
+                                                {{ evaluationsForUser.applicationUserExpertSoftSkills.lastName}}
+                                                {{ evaluationsForUser.applicationUserExpertSoftSkills.firstName}}
+                                                <ng-container
+                                                    *ngIf="evaluationsForUser.applicationUserExpertSoftSkills.expertUserState == 10">
+                                                    <p class="" style="color: #A3A6A7;">Soft Skills</p>
+                                                </ng-container>
+                                            </div>
+
+                                        </div>
+                                        <div class="skill">
+                                            <div class="foto mr-2">
+                                                <ng-container
+                                                    *ngIf="evaluationsForUser.applicationUserExpertHardSkills.photo != null; else photoUser">
+                                                    <img src="data:image/png;base64,{{evaluationsForUser.applicationUserExpertHardSkills.photo.content}}"
+                                                        alt="" class="photoUser">
+                                                </ng-container>
+                                            </div>
+                                            <div class="exp">
+                                                {{ evaluationsForUser.applicationUserExpertHardSkills.lastName}}
+                                                {{ evaluationsForUser.applicationUserExpertHardSkills.firstName}}
+
+                                                <ng-container
+                                                    *ngIf="evaluationsForUser.applicationUserExpertHardSkills.expertUserState == 20">
+                                                    <p style="color: #A3A6A7;">Hard Skills</p>
+                                                </ng-container>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="skill">
+                                            <div class="foto mr-2">
+                                                <ng-container
+                                                    *ngIf="evaluationsForUser.applicationUserExpertEnglishSkills.photo != null; else photoUser">
+                                                    <img src="data:image/png;base64,{{evaluationsForUser.applicationUserExpertEnglishSkills.photo.content}}"
+                                                        alt="" class="photoUser">
+                                                </ng-container>
+                                            </div>
+                                            <div class="exp">
+                                                {{ evaluationsForUser.applicationUserExpertEnglishSkills.lastName}}
+                                                {{ evaluationsForUser.applicationUserExpertEnglishSkills.firstName}}
+
+                                                <ng-container
+                                                    *ngIf="evaluationsForUser.applicationUserExpertEnglishSkills.expertUserState == 30">
+                                                    <p style="color: #A3A6A7;">English</p>
+                                                </ng-container>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <div class="foot">
+                <a routerLink="/createEvaluation" class="button1"><img src="../../../assets/image/iconAdd1.png" alt=""
+                        class="mr-2">
+                    Запланировать оценку</a>
+            </div>
+        </div>
+        <div class="col-lg-4 border">
+            <div class="head">
+                <h2 class="h24">Эксперт</h2>
+                <h2 style="font-size: 14px;">Слудующая не запланирована</h2>
+            </div>
+            <ng-container *ngIf="evaluationForExpertUser$ | async as evaluationForExpertUsers; else loadingBlock">
+                <div class="scroll-container">
+                    <div *ngFor="let evaluationForExpertUser of evaluationForExpertUsers.evaluation">
+                        <div class="scroll-page">
+                            <a [routerLink]="['/evaluation', evaluationForExpertUser.id]"
+                                style="width: 100%; color: #000;">
+
+                                <div class="evaluation">
+                                    <div class="experts ml-2" style="justify-content: space-between; margin-top: 0;">
+                                        <div class="foto">
+                                            <ng-container
+                                                *ngIf="evaluationForExpertUser.applicationUsers.photo != null; else photoUser">
+                                                <img src="data:image/png;base64,{{evaluationForExpertUser.applicationUsers.photo.content}}"
+                                                    alt="" class="photoUser" style="width: 52px; height: 52px;">
+                                            </ng-container>
+                                        </div>
+                                        <div class="exp ml-2" style="width: 100%;">
+                                            <div class="h24">
+                                                {{ evaluationForExpertUser.applicationUsers.lastName}}
+                                                {{ evaluationForExpertUser.applicationUsers.firstName}}
+                                            </div>
+                                            <div class="head"
+                                                style="margin-top: 0; color: #A3A6A7; justify-content: start;">
+                                                <div class="">{{ evaluationForExpertUser.currentGrade.title }}</div>
+                                                <img src="../../../assets/image/Arrow.png" alt="" class="ml-2 mr-2">
+                                                <div class="">{{ evaluationForExpertUser.nextGrade.title }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="exp">
+                                            <ng-container *ngIf="evaluationForExpertUser.evaluationState == 0">
+                                                <div class="stateEvaluationNew" style="margin-top: 10px;">
+                                                    <div>В ПЛАНАХ</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="evaluationForExpertUser.evaluationState == 10">
+                                                <div class="stateEvaluationInProgress"
+                                                    style="margin-top: 10px; width: 86px;">
+                                                    <div>В ПРОЦЕССЕ</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="evaluationForExpertUser.evaluationState == 20">
+                                                <div class="stateEvaluationCanceled" style="margin-top: 10px;">
+                                                    <div>ОТЛОЖЕНА</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="evaluationForExpertUser.evaluationState == 30">
+                                                <div class="stateEvaluationPassed" style="margin-top: 10px;">
+                                                    <div>ПРОЙДЕНА</div>
+                                                </div>
+                                            </ng-container>
+                                            <div class="date ml-3" style="color: #A3A6A7;">
+                                                {{evaluationForExpertUser.dateOfEvaluation | date:'yyyy-MM-dd'}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="col-lg-2 border">
+            <div class="head">
+                <h2 class="h24">PDP</h2>
+            </div>
+
+            <ng-container *ngIf="pdp$ | async as pdps; else loadingBlock">
+                <div class="scroll-container">
+                    <div *ngFor="let pdp of pdps">
+                        <div class="scroll-page">
+                            <button type="button" class="file" (click)="downloadPdpFile(pdp.fileGuid, pdp.fileName)">
+                                <img src="../../../assets/image/iconFile.png" alt="">
+                                <div class="fileName">{{ pdp.fileName }}</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <div class="foot">
+                <input type="file" #file (change)="uploadPdpFile(file.files)" id="uploadPdp" hidden />
+                <label for="uploadPdp" class="button1"><img src="../../../assets/image/iconAdd1.png" alt=""
+                        class="mr-2">
+                    Загрузить PDP</label>
+            </div>
+        </div>
+    </div>
+
+</section>
+<ng-template #loadingBlock>
+    Загрузка...
+</ng-template>
+
+<ng-template #gradeNull>
+    <form [formGroup]="form" (ngSubmit)="selectGrade()" novalidate>
+        <div class="" style="display: flex; align-items: center;">
+            <select class="form-control custom-select" id="gradeId" *ngIf="grades$ | async as grades"
+                style="width: 200px;" formControlName="gradeId">
+                <option *ngFor="let grade of grades" [value]="grade.id">{{grade.title}}</option>
+            </select>
+            <button type="submit" class="button1" style="font-size: 14px; height: 20px;">Выбрать грейд</button>
+        </div>
+    </form>
+
+</ng-template>
+<ng-template #photoUser>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt="" class="photoUser">
+</ng-template>
+<ng-template #photoCurrentUser>
+    <input type="file" #photo (change)="uploadPhotoUser(photo.files)" id="upload" hidden />
+    <img src="../../../assets/image/no-user-image-icon-27.png" sizes="2" alt="" class="photo ml-5">
+</ng-template>

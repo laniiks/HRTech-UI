@@ -1,0 +1,74 @@
+
+:host .body {
+    background-image: url("../../../assets/image/b7f4a6ca34e9649e47ffb6b6f5e0d759.jpeg");
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 48px;
+    position: absolute;
+    width: 790px;
+    left: 160px;
+    top: 46px;
+    background: #ffffff;
+    box-shadow: 0px 0px 8px rgba(50, 168, 205, 0.15);
+    border-radius: 36px;
+}
+.createContent{
+    width: 100%;
+}
+input,
+textarea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12.5px 21px;
+
+    height: 44px;
+    left: 0px;
+    top: 26px;
+
+    /* White */
+
+    background: #ffffff;
+    /* Dark / 10 */
+
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 13px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+.custom-file-labels {
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 13px;
+}
+
+label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    /* identical to box height, or 16px */
+
+    /* Dark / 100 */
+
+    color: #192124;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 10px 0px;
+}

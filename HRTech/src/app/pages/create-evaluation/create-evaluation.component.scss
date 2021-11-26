@@ -1,0 +1,37 @@
+.create {
+    padding: 24px;
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 12px;
+    width: 552px;
+}
+.section {
+    display: flex;
+}
+.section a {
+    margin-top: 50px;
+}
+input[type="date"], select {
+    background: #ffffff;
+    /* Dark / 10 */
+
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 13px;
+    padding: 12.5px 10px 12.5px 21px;
+    margin-bottom: 12px;
+
+}
+select{
+    width: 504px;
+
+    padding: 0 0 0 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+label{
+    margin-top: 12px;
+}
+.button2{
+    color: #fff;
+}

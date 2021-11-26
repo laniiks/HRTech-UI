@@ -1,0 +1,247 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootswatch/dist/yeti/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/yeti/bootswatch";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+}
+body {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 115.5%;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.intro {
+  margin-top: 20px;
+  flex-grow: 1;
+}
+ul,
+li {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+a:hover {
+  text-decoration: none;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mt20 {
+  margin-top: 20px;
+}
+
+/*Footer*/
+.footer {
+  background: #f0f0f0;
+  padding-top: 20px;
+  width: 100%;
+  flex-shrink: 0;
+  li {
+    margin-bottom: 10px;
+  }
+  a {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+/*Footer*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap");
+@font-face {
+  font-family: GoshaSansBold;
+  src: url(../src/assets/fonts/GoshaSans-Bold.ttf);
+}
+@font-face {
+  font-family: GoshaSansLight;
+  src: url(../src/assets/fonts/GoshaSans-Light.ttf);
+}
+@font-face {
+  font-family: GoshaSansMedium;
+  src: url(../src/assets/fonts/GoshaSans-Medium.ttf);
+}
+@font-face {
+  font-family: GoshaSansRegular;
+  src: url(../src/assets/fonts/GoshaSans-Regular.ttf);
+}
+@font-face {
+  font-family: GoshaSansUltrabold;
+  src: url(../src/assets/fonts/GoshaSans-Ultrabold.ttf);
+}
+@font-face {
+  font-family: GoshaSansUltralight;
+  src: url(../src/assets/fonts/GoshaSans-Ultralight.ttf);
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: absolute;
+}
+.body .container {
+  position: absolute;
+  bottom: 200px;
+  left: 160px;
+}
+
+.button1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 38px;
+
+  height: 56px;
+
+  background: #ffffff;
+
+  border: 1px solid #f3f4f4;
+  box-sizing: border-box;
+
+  box-shadow: 0px 0px 8px rgba(50, 168, 205, 0.15);
+  border-radius: 19px;
+}
+.button2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 38px;
+
+  height: 56px;
+
+  background: #32a8cd;
+  border-radius: 19px;
+}
+button {
+  border: none;
+}
+
+.h48 {
+  font-family: GoshaSansBold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 100%;
+}
+.h36 {
+  font-family: GoshaSansLight;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 100%;
+}
+.h24 {
+  font-family: GoshaSansLight;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 100%;
+}
+.h24b {
+  font-family: GoshaSansBold;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 100%;
+}
+
+.stateEvaluationNew {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 86px;
+  height: 24px;
+  background: #32a8cd;
+  border-radius: 4px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  margin: 0px 12px;
+  color: #fff;
+}
+.stateEvaluationPassed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 86px;
+  height: 24px;
+  background: #32cd5e;
+  border-radius: 4px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  margin: 0px 12px;
+  color: #fff;
+}
+.stateEvaluationInProgress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  background: #f29528;
+  border-radius: 4px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  margin: 0px 12px;
+  color: #fff;
+}
+.stateEvaluationCanceled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 86px;
+  height: 24px;
+  background: #eb2828;
+  border-radius: 4px;
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  margin: 0px 12px;
+  color: #fff;
+}
+.stateEvaluationCanceled,
+.stateEvaluationInProgress,
+.stateEvaluationPassed,
+.stateEvaluationNew {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  letter-spacing: 0.02em;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

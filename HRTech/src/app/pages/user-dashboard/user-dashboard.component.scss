@@ -1,0 +1,92 @@
+.headContainer {
+    max-width: 1600px;
+}
+.container {
+    padding: 0;
+}
+.image {
+    height: 200px;
+    border-radius: 12px;
+    background-image: url("../../../assets/image/imageInLk.png");
+}
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+.contentContainer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1600px;
+    box-sizing: border-box;
+    min-height: 562px;
+}
+.border {
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+.foot {
+    width: 100%;
+    position: absolute;
+    left: 0px !important;
+    bottom: 12px;
+    display: flex;
+    justify-content: center;
+}
+.foot a {
+    max-width: 316px;
+}
+
+.scroll-container {
+    display: block;
+    width: 100%;
+    height: 560px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+.scroll-page, .experts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-top: 12px;
+}
+.file, .skill {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+}
+.fileName {
+    margin-left: 12px;
+}
+label {
+    color: #008cba;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 115.5%;
+    margin: 0 !important;
+}
+.evaluation {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+a{
+    text-decoration: none;
+}
+.photo{
+    width: 72px;
+    height: 72px;
+    border-radius: 6px;
+}
+.photoUser{
+    width: 36px;
+    height: 36px;
+}

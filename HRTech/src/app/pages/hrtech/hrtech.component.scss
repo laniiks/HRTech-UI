@@ -1,0 +1,48 @@
+.body{
+    background-image: url("../../../assets/image/1fe8290d80f641498e3af631aaf79614.jpeg");
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+}
+.lk{
+    margin-right: 22px;
+}
+.hrtech{
+    font-family: 'GoshaSansBold';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 133px;
+    line-height: 100%;
+    /* identical to box height, or 140px */
+    color: #fff;
+}
+.hrtech2{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 84px;
+    color: rgba(255, 255, 255, 0.7);
+}
+.footer{
+    display: flex;
+    align-items: center;
+}
+.footer .row{
+    width: 100%;
+}
+.saas{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 44px;
+}
+a,
+a:hover,
+a:active{
+    text-decoration: none;
+}

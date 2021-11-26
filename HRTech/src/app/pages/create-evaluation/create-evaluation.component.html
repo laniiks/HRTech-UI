@@ -1,0 +1,47 @@
+<section class="intro ml-5">
+    <div class="section">
+        <a routerLink="/lk" class="mt-5">
+            <img src="../../../assets/image/Arrow1.png" alt="">
+        </a>
+        <div class="create ml-5">
+            <div class="h48 ml-3 mt-2">Создание оценки</div>
+            <form [formGroup]="form" validate>
+                <label for="selectHardSkills" class="">Hard Skills</label>
+                <select class="form-control custom-select" id="categoryId" formControlName="hardSkillsId"
+                    *ngIf="userHardSkills$ | async as userHardSkills" placeholder="Hard">
+                    <option value="" disabled selected>Выберите эксперта</option>
+                    <option *ngFor="let userHardSkill of userHardSkills" [value]="userHardSkill.id">
+                        {{userHardSkill.firstName}} {{userHardSkill.lastName}}
+                    </option>
+                </select>
+                <label for="selectSoftSkills" class="">Soft Skills</label>
+                <select class="form-control custom-select" id="categoryId" formControlName="softSkillsId"
+                    *ngIf="userSoftSkills$ | async as userSoftSkills">
+                    <option value="" disabled selected>Выберите эксперта</option>
+
+                    <option *ngFor="let userSoftSkill of userSoftSkills" [value]="userSoftSkill.id">
+                        {{userSoftSkill.firstName}} {{userSoftSkill.lastName}}
+                    </option>
+                </select>
+                <label for="selectEnglishSkills" class="">English</label>
+                <select class="form-control custom-select" id="categoryId" formControlName="englishSkillsId"
+                    *ngIf="userEnglishSkills$ | async as userEnglishSkills">
+                    <option value="" disabled selected>Выберите эксперта</option>
+
+                    <option *ngFor="let userEnglishSkill of userEnglishSkills" [value]="userEnglishSkill.id">
+                        {{userEnglishSkill.firstName}} {{userEnglishSkill.lastName}}
+                    </option>
+                </select>
+                <label class="">Дата проведения</label>
+
+                <div style="width: 100%;">
+
+                    <input type="date" name="" id="" formControlName="dateOfEvaluation">
+                </div>
+                <button (click)="submit()" class="button2">Запланировать оценку</button>
+
+            </form>
+        </div>
+    </div>
+
+</section>

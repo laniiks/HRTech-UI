@@ -1,0 +1,154 @@
+<section class="intro intro__marg">
+    <div class="headContainer container">
+        <ng-container *ngIf="company;">
+            <div class="companyDescription border" style="min-height: 200px;">
+                <div style="display: flex; align-items: center;margin-left: 12px;">
+                    <img src="data:image/png;base64,{{company.image.content}}" alt="">
+                </div>
+                <div class="description">
+                    <div class="h36">{{company.companyName}}</div>
+                    <p>{{company.description}}</p>
+                </div>
+                <div class="blockButton">
+                    <button class="button1">
+                        <img src="../../../assets/image/iconSetting.png" alt="">
+                        <p>Настройки профиля компании</p>
+                    </button>
+                    <button class="button1">
+                        <img src="../../../assets/image/iconUser.png" alt="">
+                        <p>Настройки списка сотрудников</p>
+                    </button>
+                    <button class="button1">
+                        <img src="../../../assets/image/Star1.png" alt="">
+                        <p>Изменить тарифный план</p>
+                    </button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="evaluations border">
+                    <ng-container *ngIf="evaluations$ | async as evaluations;">
+                        <div class="h24">Все оценки</div>
+                        <div class="scroll-container" style="padding: 12px;">
+
+                            <div *ngFor="let evaluation of evaluations.evaluation">
+                                <div class="scroll-page border" style="padding: 6px; position: relative;">
+                                    <div style="width: 100%; color: #000; display: flex; padding: 0 12px 0 12px;">
+                                        <ng-container
+                                            *ngIf="evaluation.applicationUserExpertSoftSkills.photo != null; else photoUser">
+                                            <img src="data:image/png;base64,{{evaluation.applicationUsers.photo.content}}"
+                                                alt="" class="photoUser">
+                                        </ng-container>
+
+
+                                        <div class="descriptionEvaluation">
+                                            <div class="h24" style="padding: 0; margin-left: 12px;">
+                                                {{evaluation.applicationUsers.lastName}}
+                                                {{evaluation.applicationUsers.firstName}}
+                                                {{evaluation.applicationUsers.patronymic}}
+                                            </div>
+                                            <span>
+                                                {{evaluation.currentGrade.title}}
+                                                <img src="../../../assets/image/Arrow.png" alt="" class="ml-2 mr-2">
+                                                {{evaluation.nextGrade.title}}
+
+                                            </span>
+                                        </div>
+                                        <div class="expert">
+                                            <ng-container
+                                                *ngIf="evaluation.applicationUserExpertSoftSkills.photo != null; else photoExpert">
+
+                                                <img src="data:image/png;base64,{{evaluation.applicationUserExpertSoftSkills.photo.content}}"
+                                                    alt="" class="photoExpert">
+                                            </ng-container>
+                                            <ng-container
+                                                *ngIf="evaluation.applicationUserExpertHardSkills.photo != null; else photoExpert">
+
+                                                <img src="data:image/png;base64,{{evaluation.applicationUserExpertHardSkills.photo.content}}"
+                                                    alt="" class="photoExpert">
+                                            </ng-container>
+                                            <ng-container
+                                                *ngIf="evaluation.applicationUserExpertEnglishSkills.photo != null; else photoExpert">
+                                                <img src="data:image/png;base64,{{evaluation.applicationUserExpertEnglishSkills.photo.content}}"
+                                                    alt="" class="photoExpert">
+                                            </ng-container>
+
+
+                                        </div>
+                                        <div class="state">
+                                            <ng-container *ngIf="evaluation.evaluationState == 0">
+                                                <div class="stateEvaluationNew">
+                                                    <div>В ПЛАНАХ</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="evaluation.evaluationState == 10">
+                                                <div class="stateEvaluationInProgress">
+                                                    <div>В ПРОЦЕССЕ</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="evaluation.evaluationState == 20">
+                                                <div class="stateEvaluationCanceled">
+                                                    <div>ОТЛОЖЕНА</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="evaluation.evaluationState == 30">
+                                                <div class="stateEvaluationPassed">
+                                                    <div>ПРОЙДЕНА</div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="date">
+                                            <div>{{evaluation.dateOfEvaluation | date:'yyyy-MM-dd'}}</div>
+                                            <a [routerLink]="['/evaluation', evaluation.id]"
+                                                style="color: #000;">Подробнее...</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="users border" style="width: 100%;">
+                    <ng-container *ngIf="users$ | async as users;">
+                        <div class="h24">Все сотрудники</div>
+                        <div class="scroll-container" style="padding: 12px;">
+
+                            <div *ngFor="let user of users">
+                                <div class="scroll-page border" style="padding: 6px; position: relative;">
+                                    <div style="width: 100%; color: #000; display: flex; padding: 0 12px 0 12px;">
+                                        <ng-container *ngIf="user.photo.content != ''; else photoUser">
+                                            <img src="data:image/png;base64,{{user.photo.content}}" alt=""
+                                                class="photoUser">
+                                        </ng-container>
+
+
+                                        <div class="descriptionEvaluation">
+                                            <div class="h24" style="padding: 0; margin-left: 12px;">
+                                                {{user.lastName}}
+                                                {{user.firstName}}
+                                                {{user.patronymic}}
+                                            </div>
+                                            <span>
+                                                <ng-container *ngIf="user.grades != null">
+                                                    {{user.grades.title}}
+                                                </ng-container>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</section>
+
+<ng-template #photoExpert>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt="" class="photoExpert">
+</ng-template>
+
+<ng-template #photoUser>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt="" class="photoUser">
+</ng-template>

@@ -5,7 +5,11 @@
   "projects": {
     "HRTech": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -21,11 +25,11 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -89,7 +93,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -124,6 +128,6 @@
   },
   "defaultProject": "HRTech",
   "cli": {
-    "analytics": "e68118d9-2aac-49a2-a233-c2036d128141"
+    "analytics": "b9ad536f-bbe6-4289-9035-0be10e2e7389"
   }
 }

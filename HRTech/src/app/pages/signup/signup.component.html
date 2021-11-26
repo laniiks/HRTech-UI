@@ -1,0 +1,64 @@
+<form class="form-login" [formGroup]="registerForm" (ngSubmit)="register()">
+    <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+    <div class="form-group">
+      <label for="inputEmail">Email</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email или Логин" required autofocus
+             [class.is-invalid]="email.invalid && email.touched" formControlName="email">
+      <div class="invalid-feedback" *ngIf="email.hasError('required')">
+        Пожалуйста, заполните Email
+      </div>
+      <div class="invalid-feedback" *ngIf="email.hasError('email')">
+        Пожалуйста, укажите валидный Email
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputFirstName">Имя</label>
+      <input type="text" id="inputFirstName" class="form-control" placeholder="Имя" autofocus
+            [class.is-invalid]="firstName.invalid && firstName.touched" formControlName="firstName">
+      <div class="invalid-feedback" *ngIf="firstName.hasError('required')">
+        Пожалуйста, заполните Имя
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputLastName">Фамилия</label>
+      <input type="text" id="inputLastName" class="form-control" placeholder="Фамилия" autofocus
+           [class.is-invalid]="lastName.invalid && lastName.touched" formControlName="lastName">
+      <div class="invalid-feedback" *ngIf="lastName.hasError('required')">
+        Пожалуйста, введите Фамилию
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Пароль</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Пароль"
+             [class.is-invalid]="password.invalid && password.touched" formControlName="password"
+             aria-describedby="passwordHelpBlock">
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Пароль должен содержать 6-20 символов, заглавную букву, число и символ
+      </small>
+      <div class="invalid-feedback" *ngIf="password.hasError('required')">
+        Пожалуйста, заполните Пароль
+      </div>
+      <div class="invalid-feedback" *ngIf="password.hasError('minlength')">
+        Пароль должен состоять минимум из {{password.errors['minlength']?.requiredLength}} символов
+      </div>
+      <div class="invalid-feedback" *ngIf="password.hasError('maxlength')">
+        Пароль должен состоять максимум из {{password.errors['maxlength']?.requiredLength}} символов
+      </div>
+      <div class="invalid-feedback" *ngIf="password.hasError('pattern')">
+        Пожалуйста, укажите валидный Пароль
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPasswordRepeat">Повторите пароль</label>
+      <input type="password" id="inputPasswordRepeat" class="form-control mb-3" placeholder="Повторите пароль"
+             [class.is-invalid]="(confirmPassword.invalid || registerForm.hasError('confirmPassword')) && confirmPassword.touched"
+             formControlName="confirmPassword">
+      <div class="invalid-feedback" *ngIf="confirmPassword.hasError('required')">
+        Пожалуйста, повторите пароль
+      </div>
+      <div class="invalid-feedback" *ngIf="registerForm.hasError('confirmPassword')">
+        Пароль не совпадает
+      </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Регистрация</button>
+</form>

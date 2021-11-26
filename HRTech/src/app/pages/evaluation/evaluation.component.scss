@@ -1,0 +1,117 @@
+.create {
+    padding: 24px;
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 12px;
+    width: 1400px;
+}
+.section {
+    display: flex;
+}
+.section a {
+    margin-top: 50px;
+}
+input[type="date"],
+select {
+    background: #ffffff;
+    /* Dark / 10 */
+
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 13px;
+    padding: 12.5px 10px 12.5px 21px;
+    margin-bottom: 12px;
+}
+select {
+    width: 504px;
+
+    padding: 0 0 0 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+label {
+    margin-top: 12px;
+}
+.button2 {
+    color: #fff;
+}
+.head {
+    display: flex;
+    align-items: center;
+}
+.date {
+    color: #a3a6a7;
+    margin-left: 18px;
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 100%;
+}
+.arrow {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+.hard,
+.soft,
+.english,
+textarea {
+    display: flex;
+    margin-top: 24px;
+}
+.content {
+    margin-top: 24px;
+    margin-left: 18px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.expert {
+    margin-right: 48px;
+}
+.comment {
+    margin-top: 24px;
+    background: #f3f4f4;
+    border-radius: 4px;
+    width: 798px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 155%;
+    color: #5e6466;
+    padding: 18px;
+}
+.comments textarea {
+    width: 798px;
+    border: 1px solid #e8e9e9;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 18px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 155%;
+    color: #5e6466;
+    background: #f3f4f4;
+}
+.successEvaluation {
+    display: flex;
+    margin-top: 24px;
+}
+.stateEvaluationPassed,
+.stateEvaluationCanceled {
+    padding: 15px;
+    width: 90px;
+}
+
+.success {
+    margin-top: 24px;
+    background: rgba(50, 205, 94, 0.1);
+    border-radius: 4px;
+    color: #32CD5E;
+}
+.canceled{
+    margin-top: 24px;
+    border-radius: 4px;
+    color: #EB2828;
+    background: rgba(235, 40, 40, 0.1);
+}

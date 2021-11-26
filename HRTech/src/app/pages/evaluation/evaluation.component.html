@@ -1,0 +1,213 @@
+<section class="intro ml-3">
+    <div class="section">
+        <a routerLink="/lk" class="">
+            <img src="../../../assets/image/Arrow1.png" alt="">
+        </a>
+        <div class="create ml-2">
+            <ng-container *ngIf="evaluation; else loadingBlock">
+                <div class="scroll-container">
+                    <div class="scroll-page">
+                        <div class="evaluation">
+                            <div class="head" style="margin-top: 10px; margin-left: 18px;">
+                                <div class="h48">{{ evaluation.currentGrade.title }}</div>
+                                <img src="../../../assets/image/Arrow2.png" alt="" class="arrow">
+                                <div class="h48">{{ evaluation.nextGrade.title }}</div>
+                                <ng-container *ngIf="evaluation.evaluationState == 30">
+                                    <div class="stateEvaluationPassed" style="margin-top: 10px;">
+                                        <div>ПРОЙДЕНА</div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="evaluation.evaluationState == 0">
+                                    <div class="stateEvaluationNew" style="margin-top: 10px;">
+                                        <div>В ПЛАНАХ</div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="evaluation.evaluationState == 10">
+                                    <div class="stateEvaluationInProgress" style="margin-top: 10px;">
+                                        <div>В ПРОЦЕССЕ</div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="evaluation.evaluationState == 20">
+                                    <div class="stateEvaluationCanceled" style="margin-top: 10px;">
+                                        <div>ОТЛОЖЕНА</div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="date">
+                                {{evaluation.dateOfEvaluation | date:'yyyy-MM-dd'}}</div>
+
+
+                            <div class="content">
+                                <div class="expert">
+                                    <div class="h36">Эксперты</div>
+                                    <div class="hard">
+                                        <div class="foto">
+                                            <ng-container
+                                                *ngIf="evaluation.applicationUserExpertHardSkills.photo != null; else photoUser">
+                                                <img src="data:image/png;base64,{{evaluation.applicationUserExpertHardSkills.photo.content}}"
+                                                    alt="" class="photoUser" style="width: 52px; height: 52px;">
+                                            </ng-container>
+                                        </div>
+                                        <div class="exp ml-2" style="width: 100%;">
+                                            <div class="h24">
+                                                {{ evaluation.applicationUserExpertHardSkills.lastName}}
+                                                {{ evaluation.applicationUserExpertHardSkills.firstName}}
+                                            </div>
+                                            <div class="head"
+                                                style="margin-top: 0; color: #A3A6A7; justify-content: start;">
+                                                <p style="color: #A3A6A7;">Hard Skills</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="soft">
+                                        <div class="foto">
+                                            <ng-container
+                                                *ngIf="evaluation.applicationUserExpertSoftSkills.photo != null; else photoUser">
+                                                <img src="data:image/png;base64,{{evaluation.applicationUserExpertSoftSkills.photo.content}}"
+                                                    alt="" class="photoUser" style="width: 52px; height: 52px;">
+                                            </ng-container>
+                                        </div>
+                                        <div class="exp ml-2" style="width: 100%;">
+                                            <div class="h24">
+                                                {{ evaluation.applicationUserExpertSoftSkills.lastName}}
+                                                {{ evaluation.applicationUserExpertSoftSkills.firstName}}
+                                            </div>
+                                            <div class="head"
+                                                style="margin-top: 0; color: #A3A6A7; justify-content: start;">
+                                                <p style="color: #A3A6A7;">Soft Skills</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="english">
+                                        <div class="foto">
+                                            <ng-container
+                                                *ngIf="evaluation.applicationUserExpertEnglishSkills.photo != null; else photoUser">
+                                                <img src="data:image/png;base64,{{evaluation.applicationUserExpertEnglishSkills.photo.content}}"
+                                                    alt="" class="photoUser" style="width: 52px; height: 52px;">
+                                            </ng-container>
+                                        </div>
+                                        <div class="exp ml-2" style="width: 100%;">
+                                            <div class="h24">
+                                                {{ evaluation.applicationUserExpertEnglishSkills.lastName}}
+                                                {{ evaluation.applicationUserExpertEnglishSkills.firstName}}
+                                            </div>
+                                            <div class="head"
+                                                style="margin-top: 0; color: #A3A6A7; justify-content: start;">
+                                                <p style="color: #A3A6A7;">English</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="comments">
+                                    <div class="h36">Комментарии</div>
+                                    <form [formGroup]="commentForm" (ngSubmit)="addComment()" novalidate>
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="3" formControlName="textComment"
+                                                placeholder="Текст комментария"></textarea>
+                                            <button class="button1 mt-3 mb-3" type="submit">Добавить
+                                                комментарий</button>
+                                        </div>
+                                    </form>
+                                    <ng-container *ngIf="comments$ | async as comments">
+                                        <div *ngFor="let comment of comments">
+                                            <div class="comment">
+                                                <div class="h24b">
+                                                    {{comment.userName}}
+                                                </div>
+                                                {{comment.textComment}}
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <div class="proverka">
+                                    <div class="h36">Проверка</div>
+                                    <ng-container
+                                        *ngIf="evaluation.hardSkillSuccess == 0 && (evaluation.evaluationState == 0 || evaluation.evaluationState == 10); else stateHard">
+                                        <div class="successEvaluation">
+                                            <button type="button" class="stateEvaluationPassed"
+                                                (click)="hardSkill(evaluation.id, 10)">Соответствие</button>
+                                            <button type="button" class="stateEvaluationCanceled"
+                                                (click)="hardSkill(evaluation.id, 20)">Не соответствие</button>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf="evaluation.softSkillSuccess == 0 && (evaluation.evaluationState == 0 || evaluation.evaluationState == 10); else stateSoft">
+                                        <div class="successEvaluation" style="margin-top: 54px;">
+                                            <button type="button" class="stateEvaluationPassed"
+                                                (click)="softSkill(evaluation.id, 10)">Соответствие</button>
+                                            <button type="button" class="stateEvaluationCanceled"
+                                                (click)="softSkill(evaluation.id, 20)">Не соответствие</button>
+                                        </div>
+                                    </ng-container>
+
+                                    <ng-container
+                                        *ngIf="evaluation.englishSkillSuccess == 0 && (evaluation.evaluationState == 0 || evaluation.evaluationState == 10); else stateEnglish">
+                                        <div class="successEvaluation" style="margin-top: 54px;">
+                                            <button type="button" class="stateEvaluationPassed"
+                                                (click)="englishSkill(evaluation.id, 10)">Соответствие</button>
+                                            <button type="button" class="stateEvaluationCanceled"
+                                                (click)="englishSkill(evaluation.id, 20)">Не соответствие</button>
+                                        </div>
+                                    </ng-container>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+
+    </div>
+
+</section>
+
+<ng-template #loadingBlock>
+    Загрузка...
+</ng-template>
+
+<ng-template #stateSoft>
+    <ng-container *ngIf="evaluation.softSkillSuccess == 10">
+        <div class="button2 success">
+            <img src="../../../assets/image/SuccessState.png" alt="" class="mr-2"> Соответствие
+        </div>
+    </ng-container>
+    <ng-container *ngIf="evaluation.softSkillSuccess == 20">
+        <div class="button2 canceled">
+            <img src="../../../assets/image/iconClose1.png" alt="" class="mr-2"> Не соответствие
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #stateHard>
+    <ng-container *ngIf="evaluation.hardSkillSuccess == 10">
+        <div class="button2 success">
+            <img src="../../../assets/image/SuccessState.png" alt="" class="mr-2"> Соответствие
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="evaluation.hardSkillSuccess == 20">
+        <div class="button2 canceled">
+            <img src="../../../assets/image/iconClose1.png" alt="" class="mr-2"> Не соответствие
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #stateEnglish>
+    <ng-container *ngIf="evaluation.englishSkillSuccess == 10">
+        <div class="button2 success">
+            <img src="../../../assets/image/SuccessState.png" alt="" class="mr-2"> Соответствие
+        </div>
+    </ng-container>
+    <ng-container *ngIf="evaluation.englishSkillSuccess == 20">
+        <div class="button2 canceled">
+            <img src="../../../assets/image/iconClose1.png" alt="" class="mr-2"> Не соответствие
+        </div>
+    </ng-container>
+</ng-template>
+<ng-template #photoUser>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt="" class="photoUser">
+</ng-template>

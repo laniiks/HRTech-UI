@@ -81,6 +81,28 @@ export class CompanyService {
     );
   }
 
+  deleteCompany(id: Guid){
+    return this.http.delete(`${this.ROOT_URL}/${id}`, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
+  }
+  restoreCompany(id: Guid){
+    return this.http.put(`${this.ROOT_URL}/RestoreCompany?id=${id}`, null, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
+  }
+  
+  getCountNewCompany(){
+    return this.http.get<number>(`${this.ROOT_URL}/GetCountNewCompany`)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
+  }
 
 
   errorHandler(e) {

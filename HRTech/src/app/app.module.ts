@@ -25,6 +25,7 @@ import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { CompanyComponent } from './components/company/company/company.component';
 import { NewCompanyComponent } from './components/new-company/new-company.component';
 import { NewCompanyGetByIdComponent } from './components/new-company-get-by-id/new-company-get-by-id.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { NewCompanyGetByIdComponent } from './components/new-company-get-by-id/n
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,

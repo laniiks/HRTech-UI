@@ -14,12 +14,16 @@ export class AdminPanelComponent implements OnInit {
   companys$: Observable<ICompanyModel[]>;
   company$: ICompanyModel;
   type: string;
+  countNewCompany: number;
 
 
 constructor(private readonly companyService: CompanyService,
               private readonly http: HttpClient) { }
   ngOnInit(): void {
     this.companys$ = this.companyService.getNewCompanys(false);
+    this.companyService.getCountNewCompany().subscribe(data=>{
+      this.countNewCompany = data
+    });
   }
 
   getCompany(id: Guid){

@@ -28,4 +28,16 @@ export class CompanyComponent implements OnInit {
       this.evaluations$ = data;
     });
   }
+  deleteCompany(id: Guid){
+    this.companyService.deleteCompany(id).subscribe(()=>{
+      location.reload();
+    })
+  }
+
+  restoreCompany(id: Guid){
+    this.companyService.restoreCompany(id).subscribe(()=>{
+      location.reload();
+    })  
+  }
+
 }

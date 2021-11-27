@@ -19,6 +19,7 @@
                                     </ng-container>
                                     <p class="ml-2">
                                         <b>{{company.companyName}}</b>
+                                        <img *ngIf="company.state == 20" src="../../../assets/image/Shield.png" alt="">
                                     </p>
                                     <img src="../../../assets/image/iconEdit.png" alt="" class="edit">
                                 </div>
@@ -32,10 +33,13 @@
             <div>
                 <div class="h24 border" style="padding: 12px; min-height: 96px;position: relative;">
                     Без понятия Абсолютно
-                    <div class="button1 h18" (click)="type='ListCompany'"
+                    <div class="button1 h18 " (click)="type='ListCompany'"
                         style="width: 334px; color: rgba(50, 168, 205, 1); position: absolute; right: 12px !important; bottom: 12px;">
                         <img src="../../../assets/image/iconListCompany.png" alt="">
                         Список заявок компаний
+                        <span *ngIf="countNewCompany > 0" style="position: absolute;top: 0;right: 0;border: 1px solid;border-radius: 50%;padding-right: 5px;padding-left: 5px;color: #fff;background-color: #EB2828;font-size: 14px;">
+                            {{countNewCompany}}
+                        </span>
                     </div>
                 </div>
             </div>

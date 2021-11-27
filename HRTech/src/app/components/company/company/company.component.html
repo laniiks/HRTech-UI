@@ -15,6 +15,8 @@
                 <p>
                     {{company.description}}
                 </p>
+                <div class="button2" *ngIf="company.state == 10" (click)="deleteCompany(company.id)" style="background-color: #EB2828; color: #fff;">Заблокировать компанию</div>
+                <div class="button2" *ngIf="company.state == 20" (click)="restoreCompany(company.id)" style="background-color: #32CD5E; color: #fff;">Восстановить компанию</div>
             </div>
         </div>
         <div class="evaluation">

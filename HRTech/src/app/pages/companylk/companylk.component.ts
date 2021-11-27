@@ -40,7 +40,7 @@ export class CompanylkComponent implements OnInit {
       firstName: ['', Validators.required],
       patronymic: ['', Validators.required],
       email: ['', Validators.required],
-      isDirector: [''],
+      isDirector: [false],
       phoneNumber: [''],
     })
   }

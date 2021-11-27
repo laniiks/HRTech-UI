@@ -37,9 +37,14 @@
                         style="width: 334px; color: rgba(50, 168, 205, 1); position: absolute; right: 12px !important; bottom: 12px;">
                         <img src="../../../assets/image/iconListCompany.png" alt="">
                         Список заявок компаний
-                        <span *ngIf="countNewCompany > 0" style="position: absolute;top: 0;right: 0;border: 1px solid;border-radius: 50%;padding-right: 5px;padding-left: 5px;color: #fff;background-color: #EB2828;font-size: 14px;">
+                        <span *ngIf="countNewCompany > 0 && countNewCompany < 99; else count" class="translate-middle badge rounded-pill bg-danger" style="position: absolute;top: -5px;right: -5px;border: 1px solid;border-radius: 50%;padding-right: 5px;padding-left: 5px;color: #fff;background-color: #EB2828;font-size: 14px;">
                             {{countNewCompany}}
                         </span>
+                        <ng-template #count>
+                            <span class="translate-middle badge rounded-pill bg-danger" style="position: absolute;top: -5px;right: -5px;border: 1px solid;border-radius: 50%;padding-right: 5px;padding-left: 5px;color: #fff;background-color: #EB2828;font-size: 14px;">
+                                99+
+                            </span>
+                        </ng-template>
                     </div>
                 </div>
             </div>

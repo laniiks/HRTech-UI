@@ -1,0 +1,37 @@
+<ng-container *ngIf="newCompanys$ | async as newCompanys">
+
+    <div class="newCompanys" style="padding: 12px; display: flex;">
+        <div>
+            <div class="h24">Заявки на присоединение</div>
+            <div class="scroll-container">
+                <div *ngFor="let company of newCompanys" style="width: 348px">
+                    <div class="scroll-page" (click)="getCompany(company.id)">
+                        <div class="company border"
+                            style="display: flex; align-items: center; width: 100%; border-radius: 12px;">
+                            <ng-container *ngIf="company.image != null; else photo">
+                                <img src="data:image/png;base64,{{company.image.content}}" alt=""
+                                    style="height: 50px; width: 75px; border-radius: 12px;">
+                            </ng-container>
+                            <p class="ml-2" style="display: flex; align-items: center;">
+                                <b class="h18">{{company.companyName}}</b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="getCompany">
+            <ng-container *ngIf="company$ as company;">
+                <app-new-company-get-by-id [company]="company"></app-new-company-get-by-id>
+            </ng-container>
+        </div>
+
+    </div>
+</ng-container>
+
+
+
+<ng-template #photo>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt=""
+        style="height: 50px; width: 75px; border-radius: 12px;">
+</ng-template>

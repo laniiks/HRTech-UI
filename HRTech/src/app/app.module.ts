@@ -23,6 +23,8 @@ import { EvaluationComponent } from './pages/evaluation/evaluation.component';
 import { CompanylkComponent } from './pages/companylk/companylk.component';
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { CompanyComponent } from './components/company/company/company.component';
+import { NewCompanyComponent } from './components/new-company/new-company.component';
+import { NewCompanyGetByIdComponent } from './components/new-company-get-by-id/new-company-get-by-id.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,9 @@ import { CompanyComponent } from './components/company/company/company.component
         EvaluationComponent,
         CompanylkComponent,
         AdminPanelComponent,
-        CompanyComponent
+        CompanyComponent,
+        NewCompanyComponent,
+        NewCompanyGetByIdComponent
     ],
   imports: [
     BrowserModule,

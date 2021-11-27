@@ -49,6 +49,28 @@ export class CompanyService {
       catchError(this.errorHandler)
     );
   }
+
+  getNewCompanys(isNew: boolean){
+    return this.http.get<ICompanyModel[]>(`${this.ROOT_URL}/GetNewOrActiveCompany?isNewCompany=${isNew}`)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
+  }
+  activeCompany(id: Guid, isRegisterUser: boolean){
+    return this.http.put(`${this.ROOT_URL}/ActiveCompany?id=${id}&isRegisterUser=${isRegisterUser}`, null, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
+  }
+  rejectCompany(id: Guid){
+    return this.http.delete(`${this.ROOT_URL}/RejectCompany/${id}`, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
+  }
   
   downloadTemplateFile(id: number) 
   {

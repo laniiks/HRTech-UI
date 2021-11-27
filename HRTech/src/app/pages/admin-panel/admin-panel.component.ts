@@ -12,7 +12,8 @@ import { CompanyService } from 'src/app/services/company.service';
 })
 export class AdminPanelComponent implements OnInit {
   companys$: Observable<ICompanyModel[]>;
-  company$: Observable<ICompanyModel>;
+  company$: ICompanyModel;
+  type: string;
 
 
 constructor(private readonly companyService: CompanyService,
@@ -22,6 +23,10 @@ constructor(private readonly companyService: CompanyService,
   }
 
   getCompany(id: Guid){
-    this.company$ = this.companyService.getCompanyById(id);
+    this.type = 'GetCompanyId';
+
+    this.companyService.getCompanyById(id).subscribe(data =>{
+      this.company$ = data;
+    });
   }
 }

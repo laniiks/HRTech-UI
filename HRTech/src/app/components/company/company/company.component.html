@@ -1,1 +1,157 @@
-{{company.companyName}}
+<div class="company" style="display: flex;">
+    <div class="contents" style="padding: 24px;">
+        <div style="display: flex;">
+            <ng-container *ngIf="company.image != null; else photo">
+                <div>
+                    <img src="data:image/png;base64,{{company.image.content}}" alt=""
+                        style="max-height: 200px; max-width: 200px; border-radius: 12px;">
+                </div>
+
+            </ng-container>
+            <div class="description ml-3">
+                <div class="h36">
+                    {{company.companyName}}
+                </div>
+                <p>
+                    {{company.description}}
+                </p>
+            </div>
+        </div>
+        <div class="evaluation">
+            <ng-container *ngIf="evaluations$ as evaluations;">
+                <div class="scroll-container" style="padding: 12px; height: 480px;">
+
+                    <div *ngFor="let evaluation of evaluations.evaluation">
+                        <div class="scroll-page border" style="padding: 6px; position: relative;">
+                            <div style="color: #000; display: flex; padding: 0 12px 0 12px;">
+                                <ng-container
+                                    *ngIf="evaluation.applicationUserExpertSoftSkills.photo != null; else photoUser">
+                                    <img src="data:image/png;base64,{{evaluation.applicationUsers.photo.content}}"
+                                        alt="" class="photoUser">
+                                </ng-container>
+
+
+                                <div class="descriptionEvaluation" style="margin-left: 6px;">
+                                    <div class="h18" style="padding: 0;">
+                                        {{evaluation.applicationUsers.lastName}}
+                                        {{evaluation.applicationUsers.firstName}}
+                                        {{evaluation.applicationUsers.patronymic}}
+                                    </div>
+                                    <span>
+                                        {{evaluation.currentGrade.title}}
+                                        <img src="../../../assets/image/Arrow.png" alt="" class="ml-2 mr-2">
+                                        {{evaluation.nextGrade.title}}
+
+                                    </span>
+                                </div>
+                                <div class="expert">
+                                    <ng-container
+                                        *ngIf="evaluation.applicationUserExpertSoftSkills.photo != null; else photoExpert">
+
+                                        <img src="data:image/png;base64,{{evaluation.applicationUserExpertSoftSkills.photo.content}}"
+                                            alt="" class="photoExpert">
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf="evaluation.applicationUserExpertHardSkills.photo != null; else photoExpert">
+
+                                        <img src="data:image/png;base64,{{evaluation.applicationUserExpertHardSkills.photo.content}}"
+                                            alt="" class="photoExpert">
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf="evaluation.applicationUserExpertEnglishSkills.photo != null; else photoExpert">
+                                        <img src="data:image/png;base64,{{evaluation.applicationUserExpertEnglishSkills.photo.content}}"
+                                            alt="" class="photoExpert">
+                                    </ng-container>
+
+
+                                </div>
+                                <div class="state">
+                                    <ng-container *ngIf="evaluation.evaluationState == 0">
+                                        <div class="stateEvaluationNew">
+                                            <div>В ПЛАНАХ</div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="evaluation.evaluationState == 10">
+                                        <div class="stateEvaluationInProgress">
+                                            <div>В ПРОЦЕССЕ</div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="evaluation.evaluationState == 20">
+                                        <div class="stateEvaluationCanceled">
+                                            <div>ОТЛОЖЕНА</div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="evaluation.evaluationState == 30">
+                                        <div class="stateEvaluationPassed">
+                                            <div>ПРОЙДЕНА</div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <div class="date">
+                                    <div>{{evaluation.dateOfEvaluation | date:'yyyy-MM-dd'}}</div>
+                                    <a [routerLink]="['/evaluation', evaluation.id]"
+                                        style="color: #000;">Подробнее...</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+    <div class="emploees" style="min-width: 450px; border-radius: 12px; padding: 24px;">
+        <div class="h36">
+            Все сотрудники
+        </div>
+        <div class="search border mt-2" style="padding: 4px; height: 44px; border-radius: 12px;">
+            <input type="text" name="" id="" style="width: 100%; height: 100%; border: none;" placeholder="Поиск">
+            <img src="../../../assets/image/iconSearch.png" alt="">
+        </div>
+        <div class="scroll-container" style="padding: 12px;">
+
+            <div *ngFor="let emploee of company.employees">
+                <div class="scroll-page border" style="padding: 6px; position: relative;">
+                    <div style="width: 100%; color: #000; display: flex; padding: 0 12px 0 12px;">
+                        <ng-container *ngIf="emploee.photo.content != ''; else photoUser">
+                            <img src="data:image/png;base64,{{emploee.photo.content}}" alt="" class="photoUser"
+                                style="width: 50px; height: 50px;">
+                        </ng-container>
+
+
+                        <div class="descriptionEvaluation" style="margin-left: 12px;">
+                            <div class="h18" style="padding: 0; ">
+                                {{emploee.lastName}}
+                                {{emploee.firstName}}
+                                {{emploee.patronymic}}
+                            </div>
+                            <span>
+                                <ng-container *ngIf="emploee.grades != null">
+                                    {{emploee.grades.title}}
+                                </ng-container>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<ng-template #photo>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt=""
+        style="height: 200px; width: 200px; border-radius: 12px;">
+</ng-template>
+<ng-template #photoUser>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt=""
+        style="height: 50px; width: 50px; border-radius: 12px;">
+</ng-template>
+
+<ng-template #photoExpert>
+    <img src="../../../assets/image/no-user-image-icon-27.png" alt="" class="photoExpert">
+</ng-template>

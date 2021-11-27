@@ -261,6 +261,7 @@
         <div class="" style="display: flex; align-items: center;">
             <select class="form-control custom-select" id="gradeId" *ngIf="grades$ | async as grades"
                 style="width: 200px;" formControlName="gradeId">
+                <option value="" disabled selected>Выберите грейд</option>
                 <option *ngFor="let grade of grades" [value]="grade.id">{{grade.title}}</option>
             </select>
             <button type="submit" class="button1" style="font-size: 14px; height: 20px;">Выбрать грейд</button>

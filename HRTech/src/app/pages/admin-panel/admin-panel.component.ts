@@ -19,7 +19,7 @@ export class AdminPanelComponent implements OnInit {
 constructor(private readonly companyService: CompanyService,
               private readonly http: HttpClient) { }
   ngOnInit(): void {
-    this.companys$ = this.companyService.getAllCompany();
+    this.companys$ = this.companyService.getNewCompanys(false);
   }
 
   getCompany(id: Guid){

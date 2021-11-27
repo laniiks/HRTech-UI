@@ -1,12 +1,14 @@
-.search{
+.search {
     display: flex;
     align-items: center;
 }
-input{
+input {
     outline: none;
 }
-.emploees{
+.emploees {
     height: 100%;
+    position: absolute;
+    right: 0 !important;
 }
 .border {
     border: 1px solid #e8e9e9;
@@ -20,7 +22,8 @@ input{
     overflow-y: auto;
     scroll-behavior: smooth;
 }
-.scroll-page, .experts {
+.scroll-page,
+.experts {
     display: flex;
     align-items: center;
     font-size: 14px;

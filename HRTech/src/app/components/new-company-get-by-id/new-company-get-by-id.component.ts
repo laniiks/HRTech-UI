@@ -20,10 +20,12 @@ export class NewCompanyGetByIdComponent implements OnInit {
   }
   activeCompany(id: Guid, isRegisterUser: boolean){
     this.companyService.activeCompany(id, isRegisterUser).subscribe(()=>{
+      location.reload();
     })
   }
   rejectCompany(id: Guid){
     this.companyService.rejectCompany(id).subscribe(()=>{
+      location.reload();
     })
   }
 

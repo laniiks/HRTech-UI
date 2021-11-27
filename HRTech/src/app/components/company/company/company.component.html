@@ -1,6 +1,6 @@
-<div class="company" style="display: flex;">
-    <div class="contents" style="padding: 24px;">
-        <div style="display: flex;">
+<div class="company" style="display: flex; position: relative;">
+    <div class="contents" style="padding: 24px; ">
+        <div style="display: flex; max-width: 730px;">
             <ng-container *ngIf="company.image != null; else photo">
                 <div>
                     <img src="data:image/png;base64,{{company.image.content}}" alt=""
@@ -23,11 +23,12 @@
 
                     <div *ngFor="let evaluation of evaluations.evaluation">
                         <div class="scroll-page border" style="padding: 6px; position: relative;">
-                            <div style="color: #000; display: flex; padding: 0 12px 0 12px;">
+                            <div style="color: #000; display: flex; padding: 0 12px 0 12px; width: 100%;
+                            justify-content: space-between;">
                                 <ng-container
                                     *ngIf="evaluation.applicationUserExpertSoftSkills.photo != null; else photoUser">
                                     <img src="data:image/png;base64,{{evaluation.applicationUsers.photo.content}}"
-                                        alt="" class="photoUser">
+                                        alt="" class="photoUser" style="width: 50px; height: 50px;">
                                 </ng-container>
 
 

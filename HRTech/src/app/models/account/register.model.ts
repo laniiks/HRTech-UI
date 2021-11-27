@@ -1,7 +1,11 @@
+import { Guid } from "guid-typescript";
+
 export interface IRegisterModel {
   email: string;
   firstName: string;
   lastName: string;
-  password: string;
-  confirmPassword: string;
+  patronymic: string;
+  phoneNumber: string;
+  companyId: Guid;
+  isDirector: boolean;
 }

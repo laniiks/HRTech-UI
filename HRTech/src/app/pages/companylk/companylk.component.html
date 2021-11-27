@@ -14,15 +14,16 @@
                         <img src="../../../assets/image/iconSetting.png" alt="">
                         <p>Настройки профиля компании</p>
                     </button>
-                    <button class="button1">
+                    <button type="button" class="button1" data-toggle="modal" data-target="#exampleModalCenter">
                         <img src="../../../assets/image/iconUser.png" alt="">
-                        <p>Настройки списка сотрудников</p>
+                        <p>Добавить сотрудника</p>
                     </button>
-                    <button class="button1">
+                    <button type="button" class="button1">
                         <img src="../../../assets/image/Star1.png" alt="">
                         <p>Изменить тарифный план</p>
                     </button>
                 </div>
+
             </div>
             <div class="content">
                 <div class="evaluations border">
@@ -152,3 +153,44 @@
 <ng-template #photoUser>
     <img src="../../../assets/image/no-user-image-icon-27.png" alt="" class="photoUser">
 </ng-template>
+
+<div class="modal fade border" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Добавить сотрудника</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="createUser" (ngSubmit)="addUserInCompany()">
+
+                <div class="modal-body">
+                    <label for="inputTitle" class="">Фамилия</label>
+                    <input formControlName="lastName" type="text" id="inputLastName" class="form-control"
+                        placeholder="Введите фамилию сотрудника" required autofocus>
+                    <label for="inputTitle" class="">Имя</label>
+                    <input formControlName="firstName" type="text" id="inputFirstName" class="form-control"
+                        placeholder="Введите имя сотрудника" required autofocus>
+                    <label for="inputPatronymic" class="">Отчество</label>
+                    <input formControlName="patronymic" type="text" id="inputPatronymic" class="form-control"
+                        placeholder="Введите отчество сотрудника" required autofocus>
+                    <label for="inputPatronymic" class="">Email</label>
+                    <input formControlName="email" type="text" id="inputEmail" class="form-control"
+                        placeholder="Введите email сотрудника" required autofocus>
+                    <label for="inputphoneNumber" class="">Номер телефона</label>
+                    <input formControlName="phoneNumber" type="text" id="phoneNumber" class="form-control"
+                        placeholder="Введите номер телефона сотрудника" required autofocus>
+                    <input type="checkbox" name="director" id="director" formControlName="isDirector" class="mr-2">
+                    <label for="director">Менеджер</label>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="button2">Добавить сотрудника</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

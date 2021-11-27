@@ -1,15 +1,21 @@
 import {Injectable, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {IUserModel} from '../models/account/user.model';
 import { catchError, map, retry } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AddPhoneNumber, VerifyPhoneNumber } from '../models/account/phonenumber.model';
 import { Guid } from 'guid-typescript';
+import { IRegisterModel } from '../models/account/register.model';
 
 @Injectable({providedIn: 'root'})
 export class UserService implements OnInit{
   private readonly ROOT_URL = 'api/Account';
-  private readonly ROOT_USER_URL = `api/User`
+  private readonly ROOT_USER_URL = `api/User`;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8;'
+    })
+  };
 
   ngOnInit(): void {
   }
@@ -53,9 +59,9 @@ export class UserService implements OnInit{
       catchError(this.errorHandler)
     );
   }
-  
-  verifyPhone(verifyPhone: VerifyPhoneNumber){
-    return this.http.post<AddPhoneNumber>(`${this.ROOT_URL}/VerifyPhoneNumber`, verifyPhone)
+
+  addUserInCompany(user: IRegisterModel): Observable<IRegisterModel>{
+    return this.http.post<IRegisterModel>(`${this.ROOT_URL}/addUserInCompany`, user, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandler)

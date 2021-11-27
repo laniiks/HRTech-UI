@@ -22,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: { bodyClass: 'login' }
   },
   {
     path: 'signup',
@@ -50,6 +51,7 @@ const routes: Routes = [
   {
     path: 'create-company', 
     component: CreateCompanyComponent,
+    data: { htmlClass: 'createCompany' }
   },
   {
     path: 'admin-panel',

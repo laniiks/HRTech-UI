@@ -1,6 +1,7 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import {Observable} from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -8,10 +9,12 @@ import { IUserModel } from 'src/app/models/account/user.model';
 import { IEvaluationModel } from 'src/app/models/evaluation/evaluation-model';
 import { IGradeModel, IGradeModelId } from 'src/app/models/grade/grade-model';
 import { IPdpModel } from 'src/app/models/pdp/pdp-model';
+import { BaseService } from 'src/app/services/base.service';
 import { EvaluationService } from 'src/app/services/evaluation.service';
 import { GradeService } from 'src/app/services/grade.service';
 import { PdpService } from 'src/app/services/pdp.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { ApiUrls } from 'src/app/shared/apiURLs';
 import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/user.service';
 
@@ -38,12 +41,14 @@ export class UserDashboardComponent implements OnInit {
   grades$: Observable<IGradeModel[]>;
   evaluationsForUser$: Observable<IEvaluationModel>;
   evaluationForExpertUser$: Observable<IEvaluationModel>;
-  isAdmin: Observable<boolean>;
+  isAdmin: boolean;
 
 
   constructor(private readonly pdpService: PdpService,
               private readonly gradeService: GradeService,
               private readonly authService: AuthService,
+              private readonly baseService: BaseService,
+              private readonly router: Router,
               private readonly evaluationService: EvaluationService,
               private renderer: Renderer2,
               private readonly userService: UserService,
@@ -66,7 +71,9 @@ export class UserDashboardComponent implements OnInit {
       this.grade$ = this.gradeService.getGradeById(this.user.gradeId);
       this.grades$ = this.gradeService.getGradeInCompany(this.user.companyId);
     })
-    this.isAdmin = this.authService.isAdmin();
+    this.authService.isAdmin().subscribe(data=>{
+      this.isAdmin = data;
+    });
     this.renderer.setStyle(document.body, 'background-color', '#fff');
   }
   
@@ -116,5 +123,14 @@ export class UserDashboardComponent implements OnInit {
     this.userService.updateGrade(this.form.get('gradeId').value).pipe(take(1)).subscribe()
     location.reload()
   }
-
+  logout() {
+    this.baseService.post(ApiUrls.logout)
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .finally(() => {
+        this.router.navigate(['/']);
+        this.authService.deleteToken();
+      });
+  }
 }

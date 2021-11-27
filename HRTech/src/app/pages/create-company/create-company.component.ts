@@ -39,11 +39,11 @@ export class CreateCompanyComponent implements OnInit {
     private http: HttpClient
   ) { 
     this.loadTemplateFile();
-    this.renderer.setStyle(document.body, 'background-image', 'url("../../../assets/image/b7f4a6ca34e9649e47ffb6b6f5e0d759.jpeg")');
-    this.renderer.setStyle(document.body, 'background-size', 'cover');
-    this.renderer.setStyle(document.body, 'background-attachment', 'fixed');
-    this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
-    this.renderer.setStyle(document.body, 'background-position', 'center center');
+    // this.renderer.setStyle(document.body, 'background-image', 'url("../../../assets/image/b7f4a6ca34e9649e47ffb6b6f5e0d759.jpeg")');
+    // this.renderer.setStyle(document.body, 'background-size', 'cover');
+    // this.renderer.setStyle(document.body, 'background-attachment', 'fixed');
+    // this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
+    // this.renderer.setStyle(document.body, 'background-position', 'center center');
   }
 
   ngOnInit(): void {

@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit {
               private renderer: Renderer2,
               private readonly toastService: ToastService) {
     this.loginForm = formBuilder.group(this.formObj)
-    this.renderer.setStyle(document.body, 'background-image', 'url("../../../assets/image/07fe8de6af89b7b6361a53d85d16f6ca.png")');
-    this.renderer.setStyle(document.body, 'background-size', 'cover');
-    this.renderer.setStyle(document.body, 'background-attachment', 'fixed');
-    this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
-    this.renderer.setStyle(document.body, 'background-position', 'center center');
+    // this.renderer.setStyle(document.body, 'background-image', 'url("../../../assets/image/07fe8de6af89b7b6361a53d85d16f6ca.png")');
+    // this.renderer.setStyle(document.body, 'background-size', 'cover');
+    // this.renderer.setStyle(document.body, 'background-attachment', 'fixed');
+    // this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
+    // this.renderer.setStyle(document.body, 'background-position', 'center center');
   }
 
   ngOnInit(): void {

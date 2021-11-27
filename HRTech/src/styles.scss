@@ -244,6 +244,21 @@ button {
   letter-spacing: 0.02em;
 }
 
+body.createCompany{
+  height: 100%;
+  background-image: url("./assets/image/b7f4a6ca34e9649e47ffb6b6f5e0d759.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+body.login{
+  background-image: url("./assets/image/07fe8de6af89b7b6361a53d85d16f6ca.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
